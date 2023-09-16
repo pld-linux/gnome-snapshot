@@ -3,7 +3,7 @@ Summary:	GNOME application to take pictures and videos
 Summary(pl.UTF-8):	Aplikacja GNOME to robienia zdjęć i nagrywania filmów
 Name:		gnome-snapshot
 Version:	44.2
-Release:	0.1
+Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/snapshot/44/snapshot-%{version}.tar.xz
@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
 
-%find_lang snapshot.lang
+%find_lang snapshot
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -75,5 +75,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.gnome.Snapshot.metainfo.xml
 %{_datadir}/snapshot
 %{_desktopdir}/org.gnome.Snapshot.desktop
-%{_iconsdir}/scalable/apps/org.gnome.Snapshot.svg
-%{_iconsdir}/symbolic/apps/org.gnome.Snapshot-symbolic.svg
+%{_iconsdir}/hicolor/scalable/apps/org.gnome.Snapshot.svg
+%{_iconsdir}/hicolor/symbolic/apps/org.gnome.Snapshot-symbolic.svg
