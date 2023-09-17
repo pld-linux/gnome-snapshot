@@ -8,6 +8,7 @@ License:	GPL v3+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/snapshot/44/snapshot-%{version}.tar.xz
 # Source0-md5:	b9f8b08abe7390f74383840ae9bd2f8b
+Patch0:		snapshot-x32.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
 BuildRequires:	appstream-glib
 BuildRequires:	cargo
@@ -33,6 +34,9 @@ Requires:	gtk4 >= 4.9.0
 Requires:	libadwaita >= 1.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# debugsource packages don't support rust (or require adding some flags to rust/cargo)
+%define		_debugsource_packages	0
+
 %description
 GNOME application to take pictures and videos.
 
@@ -41,8 +45,14 @@ Aplikacja GNOME to robienia zdjęć i nagrywania filmów.
 
 %prep
 %setup -q -n snapshot-%{version}
+%ifarch x32
+%patch0 -p1
+%endif
 
 %build
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %meson build
 
 %ninja_build -C build
@@ -50,6 +60,9 @@ Aplikacja GNOME to robienia zdjęć i nagrywania filmów.
 %install
 rm -rf $RPM_BUILD_ROOT
 
+%ifarch x32
+export PKG_CONFIG_ALLOW_CROSS=1
+%endif
 %ninja_install -C build
 
 %find_lang snapshot

@@ -1,0 +1,19 @@
+--- snapshot-44.2/src/meson.build.orig	2023-09-17 11:38:59.362481895 +0200
++++ snapshot-44.2/src/meson.build	2023-09-17 12:00:10.559840728 +0200
+@@ -20,6 +20,7 @@ run_command(
+ )
+ 
+ cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
++cargo_options += [ '--target', 'x86_64-unknown-linux-gnux32' ]
+ cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
+ 
+ if get_option('profile') == 'default'
+@@ -48,7 +49,7 @@ cargo_build = custom_target(
+     cargo, 'build',
+     cargo_options,
+     '&&',
+-    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
++    'cp', 'src'/ 'x86_64-unknown-linux-gnux32' / rust_target / meson.project_name(), '@OUTPUT@',
+   ]
+ )
+ 
