@@ -2,12 +2,12 @@
 Summary:	GNOME application to take pictures and videos
 Summary(pl.UTF-8):	Aplikacja GNOME to robienia zdjęć i nagrywania filmów
 Name:		gnome-snapshot
-Version:	45.0
+Version:	45.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Graphics
 Source0:	https://download.gnome.org/sources/snapshot/45/snapshot-%{version}.tar.xz
-# Source0-md5:	78fa5172e9939aa224d1c0e31fb71414
+# Source0-md5:	f95c3a9d081d9670d01b7fe1309fddd2
 Patch0:		snapshot-x32.patch
 Patch1:		snapshot-pango.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
