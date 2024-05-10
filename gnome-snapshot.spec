@@ -2,14 +2,13 @@
 Summary:	GNOME application to take pictures and videos
 Summary(pl.UTF-8):	Aplikacja GNOME to robienia zdjęć i nagrywania filmów
 Name:		gnome-snapshot
-Version:	45.2
+Version:	46.3
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Graphics
-Source0:	https://download.gnome.org/sources/snapshot/45/snapshot-%{version}.tar.xz
-# Source0-md5:	79665eb80c3cd8f1267493fadab5efdb
+Source0:	https://download.gnome.org/sources/snapshot/46/snapshot-%{version}.tar.xz
+# Source0-md5:	25f97e88005b933c382e5a0c2193599c
 Patch0:		snapshot-x32.patch
-Patch1:		snapshot-pango.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
 BuildRequires:	appstream-glib
 BuildRequires:	cairo-devel >= 1.16
@@ -21,11 +20,11 @@ BuildRequires:	gstreamer-devel >= 1.20
 BuildRequires:	gstreamer-plugins-base-devel >= 1.20
 # camerabin
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.20
-BuildRequires:	gtk4-devel >= 4.11
+BuildRequires:	gtk4-devel >= 4.13.6
 BuildRequires:	libadwaita-devel >= 1.4
 BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
-BuildRequires:	pango-devel >= 1:1.49.2
+BuildRequires:	pango-devel >= 1:1.52.0
 BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
@@ -37,10 +36,10 @@ Requires:	cairo >= 1.16
 Requires:	gdk-pixbuf2 >= 2.42
 Requires:	glib2 >= 1:2.77
 Requires:	graphene >= 1.10
-Requires:	gtk4 >= 4.11
+Requires:	gtk4 >= 4.13.6
 Requires:	hicolor-icon-theme
 Requires:	libadwaita >= 1.4
-Requires:	pango >= 1:1.49.2
+Requires:	pango >= 1:1.52.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debugsource packages don't support rust (or require adding some flags to rust/cargo)
@@ -57,7 +56,6 @@ Aplikacja GNOME to robienia zdjęć i nagrywania filmów.
 %ifarch x32
 %patch0 -p1
 %endif
-%patch1 -p1
 
 %build
 %ifarch x32
