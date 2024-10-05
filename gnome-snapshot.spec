@@ -14,7 +14,7 @@ BuildRequires:	appstream-glib
 BuildRequires:	cairo-devel >= 1.16
 BuildRequires:	cargo
 BuildRequires:	gdk-pixbuf2-devel >= 2.42
-BuildRequires:	glib2-devel >= 1:2.77
+BuildRequires:	glib2-devel >= 1:2.81
 BuildRequires:	graphene-devel >= 1.10
 BuildRequires:	gstreamer-devel >= 1.20
 BuildRequires:	gstreamer-plugins-base-devel >= 1.20
@@ -30,11 +30,11 @@ BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
-Requires(post,postun):	glib2 >= 1:2.26
+Requires(post,postun):	glib2 >= 1:2.81
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	cairo >= 1.16
 Requires:	gdk-pixbuf2 >= 2.42
-Requires:	glib2 >= 1:2.77
+Requires:	glib2 >= 1:2.81
 Requires:	graphene >= 1.10
 Requires:	gtk4 >= 4.13.6
 Requires:	hicolor-icon-theme
