@@ -2,12 +2,12 @@
 Summary:	GNOME application to take pictures and videos
 Summary(pl.UTF-8):	Aplikacja GNOME to robienia zdjęć i nagrywania filmów
 Name:		gnome-snapshot
-Version:	47.1
+Version:	48.0.1
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Graphics
-Source0:	https://download.gnome.org/sources/snapshot/47/snapshot-%{version}.tar.xz
-# Source0-md5:	cfae2acf42f18677e6cd7bd716571bd7
+Source0:	https://download.gnome.org/sources/snapshot/48/snapshot-%{version}.tar.xz
+# Source0-md5:	eed102d3704794563f7c482c980c75a4
 Patch0:		snapshot-x32.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
 BuildRequires:	appstream-glib
@@ -20,12 +20,12 @@ BuildRequires:	gstreamer-devel >= 1.20
 BuildRequires:	gstreamer-plugins-base-devel >= 1.20
 # camerabin
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.20
-BuildRequires:	gtk4-devel >= 4.13.6
-BuildRequires:	libadwaita-devel >= 1.6
+BuildRequires:	gtk4-devel >= 4.16
+BuildRequires:	libadwaita-devel >= 1.7
 BuildRequires:	meson >= 0.59
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pango-devel >= 1:1.52.0
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	rust
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -36,9 +36,9 @@ Requires:	cairo >= 1.16
 Requires:	gdk-pixbuf2 >= 2.42
 Requires:	glib2 >= 1:2.81
 Requires:	graphene >= 1.10
-Requires:	gtk4 >= 4.13.6
+Requires:	gtk4 >= 4.16
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.6
+Requires:	libadwaita >= 1.7
 Requires:	pango >= 1:1.52.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,16 +54,17 @@ Aplikacja GNOME to robienia zdjęć i nagrywania filmów.
 %prep
 %setup -q -n snapshot-%{version}
 %ifarch x32
-%patch0 -p1
+%patch -P0 -p1
 %endif
 
 %build
 %ifarch x32
 export PKG_CONFIG_ALLOW_CROSS=1
 %endif
-%meson build
+%meson \
+	-Dx11=enabled
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -71,7 +72,7 @@ rm -rf $RPM_BUILD_ROOT
 %ifarch x32
 export PKG_CONFIG_ALLOW_CROSS=1
 %endif
-%ninja_install -C build
+%meson_install
 
 %find_lang snapshot
 
