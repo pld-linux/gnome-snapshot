@@ -1,19 +1,18 @@
---- snapshot-47.0.1/src/meson.build.orig	2024-09-15 20:59:11.000000000 +0200
-+++ snapshot-47.0.1/src/meson.build	2024-10-05 08:20:02.018366043 +0200
-@@ -25,6 +25,7 @@ run_command(
- )
+--- snapshot-50.0/src/meson.build.orig	2026-03-11 20:45:59.000000000 +0100
++++ snapshot-50.0/src/meson.build	2026-10-04 11:22:52.490195667 +0200
+@@ -31,6 +31,7 @@ if gtk4_x11.found()
+ endif
  
- cargo_options = [ '--manifest-path', meson.project_source_root() / 'Cargo.toml' ]
-+cargo_options += [ '--target', 'x86_64-unknown-linux-gnux32' ]
- cargo_options += [ '--target-dir', meson.project_build_root() / 'src' ]
+ cargo_build_options += cargo_release_options
++cargo_build_options += [ '--target', 'x86_64-unknown-linux-gnux32' ]
  
- if is_devel
-@@ -61,7 +62,7 @@ cargo_build = custom_target(
-     cargo, 'build',
-     cargo_options,
+ cargo_build = custom_target(
+   'cargo-build',
+@@ -47,6 +48,6 @@ cargo_build = custom_target(
+     'build',
+     cargo_build_options,
      '&&',
--    'cp', 'src' / rust_target / meson.project_name(), '@OUTPUT@',
-+    'cp', 'src'/ 'x86_64-unknown-linux-gnux32' / rust_target / meson.project_name(), '@OUTPUT@',
+-    'cp', cargo_target / rust_target / meson.project_name(), '@OUTPUT@',
++    'cp', cargo_target / 'x86_64-unknown-linux-gnux32' / rust_target / meson.project_name(), '@OUTPUT@',
    ]
  )
- 
