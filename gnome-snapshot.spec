@@ -10,7 +10,8 @@ Source0:	https://download.gnome.org/sources/snapshot/50/snapshot-%{version}.tar.
 # Source0-md5:	e3f37e058449601e2813e91b486c307f
 Patch0:		snapshot-x32.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
-BuildRequires:	appstream-glib
+# appstreamcli
+BuildRequires:	AppStream
 BuildRequires:	cairo-devel >= 1.16
 BuildRequires:	cargo
 BuildRequires:	gdk-pixbuf2-devel >= 2.42
