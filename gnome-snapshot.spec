@@ -2,12 +2,12 @@
 Summary:	GNOME application to take pictures and videos
 Summary(pl.UTF-8):	Aplikacja GNOME to robienia zdjęć i nagrywania filmów
 Name:		gnome-snapshot
-Version:	48.0.1
+Version:	50.0
 Release:	1
 License:	GPL v3+
 Group:		X11/Applications/Graphics
-Source0:	https://download.gnome.org/sources/snapshot/48/snapshot-%{version}.tar.xz
-# Source0-md5:	eed102d3704794563f7c482c980c75a4
+Source0:	https://download.gnome.org/sources/snapshot/50/snapshot-%{version}.tar.xz
+# Source0-md5:	e3f37e058449601e2813e91b486c307f
 Patch0:		snapshot-x32.patch
 URL:		https://gitlab.gnome.org/GNOME/snapshot
 BuildRequires:	appstream-glib
@@ -15,18 +15,23 @@ BuildRequires:	cairo-devel >= 1.16
 BuildRequires:	cargo
 BuildRequires:	gdk-pixbuf2-devel >= 2.42
 BuildRequires:	glib2-devel >= 1:2.81
+BuildRequires:	glycin-devel >= 2
+BuildRequires:	glycin-gtk4-devel >= 2
 BuildRequires:	graphene-devel >= 1.10
 BuildRequires:	gstreamer-devel >= 1.20
+# video
 BuildRequires:	gstreamer-plugins-base-devel >= 1.20
 # camerabin
 BuildRequires:	gstreamer-plugins-bad-devel >= 1.20
-BuildRequires:	gtk4-devel >= 4.16
-BuildRequires:	libadwaita-devel >= 1.7
-BuildRequires:	meson >= 0.59
+BuildRequires:	gtk4-devel >= 4.18
+BuildRequires:	lcms2-devel >= 2.12.0
+BuildRequires:	libadwaita-devel >= 1.8
+BuildRequires:	libseccomp-devel >= 2.5.0
+BuildRequires:	meson >= 1.7
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pango-devel >= 1:1.52.0
 BuildRequires:	rpmbuild(macros) >= 2.042
-BuildRequires:	rust
+BuildRequires:	rust >= 1.92
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires(post,postun):	desktop-file-utils
@@ -36,9 +41,9 @@ Requires:	cairo >= 1.16
 Requires:	gdk-pixbuf2 >= 2.42
 Requires:	glib2 >= 1:2.81
 Requires:	graphene >= 1.10
-Requires:	gtk4 >= 4.16
+Requires:	gtk4 >= 4.18
 Requires:	hicolor-icon-theme
-Requires:	libadwaita >= 1.7
+Requires:	libadwaita >= 1.8
 Requires:	pango >= 1:1.52.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -93,6 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README.md
 %attr(755,root,root) %{_bindir}/snapshot
+%{_datadir}/dbus-1/services/org.gnome.Snapshot.service
 %{_datadir}/glib-2.0/schemas/org.gnome.Snapshot.gschema.xml
 %{_datadir}/metainfo/org.gnome.Snapshot.metainfo.xml
 %{_datadir}/snapshot
